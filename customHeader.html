@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<script src="https://cdn.tailwindcss.com"></script>
+		<title>Document</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap"
+			rel="stylesheet"
+		/>
+		<script src="https://kit.fontawesome.com/f93523a89c.js" crossorigin="anonymous"></script>
+		<style>
+			@layer utilities {
+				.custom-shadow {
+					box-shadow: 0 0 5px 0 #12100e;
+				}
+				.backdrop-blur-30 {
+					backdrop-filter: blur(30px);
+				}
+				.gradient-animation {
+					background: linear-gradient(130deg, #6a11cb 10%, #2575fc 30%, #ff758c 80%);
+					background-size: 200% 200%;
+					animation: gradientMove 5s ease infinite;
+				}
+
+				.button-hover {
+					transition: background-color 0.3s ease, transform 0.3s ease;
+				}
+
+				.button-hover:hover {
+					background-color: #ffffff;
+					/* color: #0e1929; */
+					transform: scale(1.1);
+				}
+
+				.button-gradient {
+					/* background: linear-gradient(130deg, #6a11cb, #2575fc, #ff758c); */
+					color: white;
+					padding: 10px 20px;
+					border-radius: 8px;
+					display: inline-block;
+					border-radius: 1rem;
+					cursor: pointer;
+					transition: transform 0.5s ease, background 0.3s ease;
+				}
+				.button-gradient:hover {
+					transform: scale(1.05);
+					background: linear-gradient(130deg, #ff758c, #2575fc, #6a11cb);
+					background-size: 200% 200%;
+					animation: gradientMove 5s ease infinite;
+				}
+			}
+			@keyframes gradientMove {
+				0% {
+					background-position: 10% 0%;
+				}
+				50% {
+					background-position: 91% 100%;
+				}
+				100% {
+					background-position: 10% 0%;
+				}
+			}
+			@layer base {
+				body {
+					font-family: 'Poppins', sans-serif;
+				}
+			}
+			body {
+				background-color: #1a1a2e;
+				background: linear-gradient(315deg, #d0b8e0 0%, #b16fe0 80%);
+				color: white;
+			}
+
+			#toggleButton {
+				cursor: pointer;
+				padding: 1.5rem;
+				border-radius: 100%;
+			}
+
+			#headerContainer {
+				display: none;
+				transition: linear 0.3ms ease-in;
+			}
+
+			#headerContainer.visible {
+				display: block;
+			}
+		</style>
+	</head>
+	<body class="w-screen h-screen relative">
+		<header class="absolute inset-x-0 bottom-0 left-1/2 transform -translate-x-1/2 w-fit">
+			<!-- <div class="text-xl">Siddhant Bobde</div> -->
+			<div
+				id="headerContainer"
+				class="flex gap-8 text-xl m-3.5 border-2 border-transparent rounded-3xl p-2.5 w-fit custom-shadow backdrop-blur-30 gradient-animation"
+			>
+				<div class="button-gradient button-hover">Home</div>
+				<div class="button-gradient button-hover">Blogs</div>
+				<div class="button-gradient button-hover">Services</div>
+				<div class="button-gradient button-hover">About</div>
+				<div class="button-gradient button-hover">Contact</div>
+			</div>
+			<div
+				id="toggleButton"
+				class="flex gap-8 text-xl m-3.5 border-2 border-transparent rounded-2xl p-3.5 w-fit custom-shadow backdrop-blur-30 gradient-animation"
+			>
+				<i class="fa-solid fa-heading"></i>
+			</div>
+		</header>
+		<script>
+			const header = document.getElementById('headerContainer');
+			const toggleButton = document.getElementById('toggleButton');
+
+			toggleButton.addEventListener('mouseover', () => {
+				toggleButton.classList.add('hidden');
+				console.log(header.classList);
+				header.classList.add('visible');
+			});
+
+			header.addEventListener('mouseleave', () => {
+				toggleButton.classList.remove('hidden');
+				header.classList.remove('visible');
+			});
+		</script>
+	</body>
+</html>
