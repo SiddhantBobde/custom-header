@@ -32,12 +32,10 @@
 
 				.button-hover:hover {
 					background-color: #ffffff;
-					/* color: #0e1929; */
 					transform: scale(1.1);
 				}
 
 				.button-gradient {
-					/* background: linear-gradient(130deg, #6a11cb, #2575fc, #ff758c); */
 					color: white;
 					padding: 10px 20px;
 					border-radius: 8px;
@@ -51,6 +49,14 @@
 					background: linear-gradient(130deg, #ff758c, #2575fc, #6a11cb);
 					background-size: 200% 200%;
 					animation: gradientMove 5s ease infinite;
+				}
+
+				#headerContainer {
+					display: none;
+				}
+
+				#headerContainer.visible {
+					display: block;
 				}
 			}
 			@keyframes gradientMove {
@@ -80,21 +86,12 @@
 				padding: 1.5rem;
 				border-radius: 100%;
 			}
-
-			#headerContainer {
-				display: none;
-				transition: linear 0.3ms ease-in;
-			}
-
-			#headerContainer.visible {
-				display: block;
-			}
 		</style>
 	</head>
 	<body class="w-screen h-screen relative">
-		<header class="absolute inset-x-0 bottom-0 left-1/2 transform -translate-x-1/2 w-fit">
+		<header id="headerContainer" class="absolute inset-x-0 bottom-0 left-1/2 transform -translate-x-1/2 w-fit">
 			<div
-				id="headerContainer"
+				id="headerElements"
 				class="flex gap-8 text-xl m-3.5 border-2 border-transparent rounded-3xl p-2.5 w-fit custom-shadow backdrop-blur-30 gradient-animation"
 			>
 				<div class="button-gradient button-hover">Home</div>
@@ -103,6 +100,8 @@
 				<div class="button-gradient button-hover">About</div>
 				<div class="button-gradient button-hover">Contact</div>
 			</div>
+		</header>
+		<header id="toggleContainer" class="absolute inset-x-0 bottom-0 left-1/2 transform -translate-x-1/2 w-fit">
 			<div
 				id="toggleButton"
 				class="flex gap-8 text-xl m-3.5 border-2 border-transparent rounded-2xl p-3.5 w-fit custom-shadow backdrop-blur-30 gradient-animation"
@@ -112,11 +111,10 @@
 		</header>
 		<script>
 			const header = document.getElementById('headerContainer');
-			const toggleButton = document.getElementById('toggleButton');
+			const toggleButton = document.getElementById('toggleContainer');
 
 			toggleButton.addEventListener('mouseover', () => {
 				toggleButton.classList.add('hidden');
-				console.log(header.classList);
 				header.classList.add('visible');
 			});
 
